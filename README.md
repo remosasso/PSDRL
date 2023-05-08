@@ -50,7 +50,7 @@ For example, you can run the PSDRL agent on _Pong_ with the parameters from the 
 ```
 python src/main.py --config="src/config.yaml" --env="Pong"
 ```
-You can set a fixed seed with an addition parameter, e.g. `--seed 42`.
+You can set a fixed seed with an additional parameter, e.g. `--seed 42`.
 
 Training can be monitored with Tensorboard.
 ```
