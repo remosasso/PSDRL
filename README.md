@@ -11,7 +11,6 @@ Implementation of Posterior Sampling for Deep Reinforcement Learning [(PSDRL)](h
 }
 ```
 
-
 ## Overview
 
 PSDRL is the first truly scalable approximation of Posterior Sampling for Reinforcement Learning (PSRL) that retains its model-based essence. In the Atari benchmark, PSDRL significantly outperforms previous state-of-the-art attempts at scaling up posterior sampling such as Bootstrapped DQN + Priors and Successor Uncertainties, while being strongly competitive with the state-of-the-art DreamerV2 agent, both in sample efficiency and computational efficiency. 
