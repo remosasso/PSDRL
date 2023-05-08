@@ -1,0 +1,57 @@
+gpu: true
+data_dir: ""
+save: false
+save_freq: 10000
+load: false
+load_dir: "./logdir/[env]/neural_linear-[name]/[seed]/checkpoints/[timestep]/"
+visual: True
+
+
+algorithm:
+  name: neural_linear
+  reward_prior: 1e-3
+  transition_prior: 1e-3
+  update_freq: 1e3
+  warmup_length: 1e5
+  warmup_freq: 250
+  policy_noise: 0.001
+
+experiment:
+  suite: atari
+  env: Pong
+  test: true
+  steps: 1e6
+  time_limit: 27000
+  test_freq: 1e4
+  name: ""
+  seed: None
+
+replay:
+  capacity: 1e5
+  batch_size: 125
+  sequence_length: 250
+
+transition:
+  training_iterations: 3
+  hidden_dim: 1536
+  gru_dim: 756
+  learning_rate: 1e-4
+  window_length: 4
+
+value:
+  training_iterations: 3
+  hidden_dim: 1536
+  learning_rate: 1e-4
+  target_update_freq: 4
+  discount: 0.99
+
+terminal:
+  training_iterations: 3
+  hidden_dim: 1536
+  learning_rate: 1e-4
+
+representation:
+  training_iterations: 3
+  learning_rate: 1e-4
+  embed_dim: 1536
+
