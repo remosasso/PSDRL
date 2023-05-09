@@ -28,7 +28,7 @@ The agent then collects data by acting greedily w.r.t. the current sampled model
 </p>
 
 By acting greedily w.r.t. different sampled models, the exploration of the agent is naturally driven through uncertainty over models of the environments.
-An example of trajectories predicted with different sampled model can be found below.
+An example of trajectories predicted with different sampled models can be found below.
 Although each trajectory starts from the same initial state and uses identical parameters for the neural network components, it is possible to notice a remarkable diversity among the different sampled models.
 
 <p align="center">
