@@ -114,7 +114,7 @@ def main(config: dict):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", type=str, default="config.yaml")
+    parser.add_argument("--config", type=str, default="./src/config.yaml")
     parser.add_argument("--env", type=str, required=True)
     parser.add_argument("--seed", type=int, default=None)
 
