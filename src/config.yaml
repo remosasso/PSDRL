@@ -3,12 +3,12 @@ data_dir: ""
 save: false
 save_freq: 10000
 load: false
-load_dir: "./logdir/[env]/neural_linear-[name]/[seed]/checkpoints/[timestep]/"
+load_dir: "./logdir/[env]/PSDRL-[name]/[seed]/checkpoints/[timestep]/"
 visual: True
 
 
 algorithm:
-  name: neural_linear
+  name: PSDRL
   reward_prior: 1e-3
   transition_prior: 1e-3
   update_freq: 1e3
