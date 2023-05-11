@@ -60,7 +60,7 @@ def run_experiment(
 
             action = agent.select_action(current_observation, episode_step)
             observation, reward, done, _ = env.step(action)
-
+            done = done or episode_step == time_limit
             agent.update(
                 current_observation,
                 action,
@@ -75,7 +75,7 @@ def run_experiment(
             current_observation = observation
             episode_step += 1
             experiment_step += 1
-            done = done or episode_step == time_limit
+       
 
         ep += 1
         logger.log_episode(
