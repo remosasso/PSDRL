@@ -61,7 +61,7 @@ tensorboard --logdir=src/logdir
 The repository includes the Atari games.
 If you wish to test the algorithm on different environments, you can add them to the `init_env` function in the [utils.py](https://github.com/remosasso/PSDRL-new/blob/master/src/PSDRL/common/utils.py#L18) file.
 
-The implementation targets environments with visual observation that are grayscale in range zero-one and of dimension 64x64, so please make sure that the observations of environments correspond to this format.
+The implementation targets environments with visual observation that are grayscale in range zero-one and of dimension 64x64, so please take that into account when using new environments (see `preprocess_image` in [utils.py](https://github.com/remosasso/PSDRL/blob/f8ef26981e41bdc2546f4218c43e095d3ee2838b/src/PSDRL/common/utils.py#L38) which the agent uses for all inputs).
 
 If you wish to test the algorithm on environments with vectorial observations, you can either implement a different architecture for the autoencoder (see [representation.py](https://github.com/remosasso/PSDRL-new/blob/master/src/PSDRL/networks/representation.py)) or remove the autoencoder altogether.
 
