@@ -24,8 +24,7 @@ def run_test_episode(env: gym.Env, agent: PSDRL, time_limit: int):
         episode_reward += reward
         current_observation = observation
         episode_step += 1
-        if episode_step == time_limit:
-            done = True
+        done = done or episode_step == time_limit
     return episode_reward
 
 
