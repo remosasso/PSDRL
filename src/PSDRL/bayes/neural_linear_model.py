@@ -168,8 +168,9 @@ class NeuralLinearModel:
             self.reward_cov = Phi * self.reward_prior
             self.transition_cov = Phi * self.transition_prior
             break
-
-        self.mu = (self.noise_variance * Phi).matmul(x.T.matmul(y)).T
+            
+        for i in range(self.state_size + 1):
+            self.mu[i] = (self.noise_variance * Phi).matmul(x.T.matmul(y[:, i]))
 
     def sample(self):
         self.randsamp[:] = torch.randn(*self.mu.shape)
