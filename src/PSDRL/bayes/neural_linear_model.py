@@ -169,7 +169,7 @@ class NeuralLinearModel:
             self.transition_cov = Phi * self.transition_prior
             break
             
-        for i in range(self.state_size + 1):
+        for i in range(self.embed_dim + 1):
             self.mu[i] = (self.noise_variance * Phi).matmul(x.T.matmul(y[:, i]))
 
     def sample(self):
