@@ -75,14 +75,13 @@ def run_experiment(
             episode_step += 1
             experiment_step += 1
        
-
+            if ep and save and experiment_step % save_freq == 0:
+                logger.data_manager.save(agent, experiment_step)
         ep += 1
         logger.log_episode(
             experiment_step, train_reward=episode_reward, test_reward=np.nan
         )
 
-        if save and experiment_step % save_freq:
-            logger.data_manager.save(agent, ep)
 
 
 def main(config: dict):
