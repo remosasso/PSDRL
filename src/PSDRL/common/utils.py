@@ -98,8 +98,7 @@ def create_directories(env: str, algorithm: str, name: str):
         number += 1
     logdir = folder_name + "/{}/".format(number)
     os.mkdir(logdir)
-    os.mkdir(logdir + "models/")
-    os.mkdir(logdir + "episodes/")
+    os.mkdir(logdir + "checkpoints/")
     return logdir
 
 
