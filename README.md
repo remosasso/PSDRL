@@ -1,6 +1,6 @@
 # Posterior Sampling for Deep Reinforcement Learning
 
-Implementation of Posterior Sampling for Deep Reinforcement Learning [(PSDRL)](https://arxiv.org/abs/2305.00477) in PyTorch.
+Implementation of Posterior Sampling for Deep Reinforcement Learning [(PSDRL)]([https://arxiv.org/abs/2305.00477](https://proceedings.mlr.press/v202/sasso23a.html)) in PyTorch.
 
 ```
 @inproceedings{sasso2023posterior,
