@@ -2,7 +2,7 @@ import os
 import argparse
 
 import numpy as np
-import ruamel.yaml as yaml
+from ruamel.yaml import YAML
 import gym
 
 from PSDRL.common.data_manager import DataManager
@@ -113,14 +113,15 @@ def main(config: dict):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", type=str, default="./src/config.yaml")
+    parser.add_argument("--config", type=str, default="./config.yaml")
     parser.add_argument("--env", type=str, required=True)
     parser.add_argument("--seed", type=int, default=None)
 
     args = parser.parse_args()
 
     with open(args.config, "r") as f:
-        config = yaml.safe_load(f)
+        yaml = YAML(typ='rt')
+        config = yaml.load(f)
         config["experiment"]["env"] = args.env
         config["experiment"]["seed"] = args.seed
 

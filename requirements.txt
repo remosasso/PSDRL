@@ -1,5 +1,5 @@
 gym[atari]==0.18.3
 Pillow
-ruamel.base
+ruamel.yaml
 scikit_image
 torch

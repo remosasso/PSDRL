@@ -36,7 +36,6 @@ class TransitionModelTrainer:
         """
         for _ in range(self.training_iterations):
             o, a, o1, r, t = dataset.sample_sequences()
-            print(a)
             length = len(o[0])
 
             self.prev_states = torch.zeros(
