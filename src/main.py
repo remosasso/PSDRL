@@ -14,13 +14,13 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
 
 def run_test_episode(env: gym.Env, agent: PSDRL, time_limit: int):
-    current_observation = env.reset()
+    current_observation, _ = env.reset()
     episode_step = 0
     episode_reward = 0
     done = False
     while not done:
         action = agent.select_action(current_observation, episode_step)
-        observation, reward, done, _ = env.step(action)
+        observation, reward, done, _, _ = env.step(action)
         episode_reward += reward
         current_observation = observation
         episode_step += 1
@@ -47,7 +47,7 @@ def run_experiment(
         episode_step = 0
         episode_reward = 0
 
-        current_observation = env.reset()
+        current_observation, _ = env.reset()
         done = False
         while not done:
 
@@ -58,7 +58,7 @@ def run_experiment(
                 )
 
             action = agent.select_action(current_observation, episode_step)
-            observation, reward, done, _ = env.step(action)
+            observation, reward, done, _, _ = env.step(action)
             done = done or episode_step == time_limit
             agent.update(
                 current_observation,
