@@ -75,10 +75,10 @@ def run_experiment(
             current_observation = observation
             episode_step += 1
             experiment_step += 1
-       
+
             if ep and save and experiment_step % save_freq == 0:
                 logger.data_manager.save(agent, experiment_step)
-
+        ep += 1
         print(f'Episode {ep}, Timestep {experiment_step}, Train Reward {episode_reward}')
 
         logger.log_episode(
