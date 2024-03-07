@@ -31,7 +31,11 @@ class PSDRL:
         self.discount = config["value"]["discount"]
 
         self.dataset = Dataset(
-            logger, config["replay"], config["experiment"]["time_limit"], self.device, seed
+            logger,
+            config["replay"],
+            config["experiment"]["time_limit"],
+            self.device,
+            seed,
         )
 
         self.autoencoder = AutoEncoder(config["representation"], self.device)

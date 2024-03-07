@@ -27,7 +27,13 @@ def init_env(suite: str, env: str, test: bool):
         if test:
             test_environment = gym.make(full_game_name)
             test_environment = gym.wrappers.AtariPreprocessing(
-                test_environment, NOOP, FRAME_SKIP, STATE_SIZE, False, True, scale_obs=True
+                test_environment,
+                NOOP,
+                FRAME_SKIP,
+                STATE_SIZE,
+                False,
+                True,
+                scale_obs=True,
             )
     else:
         raise NotImplementedError(f"{suite} is not available.")
@@ -61,7 +67,9 @@ def expand_image(img: torch.tensor):
 def state_action_append(
     obs: torch.tensor, action: torch.tensor, n_actions: int, device: str
 ):
-    return torch.hstack((obs, F.one_hot(action.reshape(-1).long(), num_classes=n_actions).to(device)))
+    return torch.hstack(
+        (obs, F.one_hot(action.reshape(-1).long(), num_classes=n_actions).to(device))
+    )
 
 
 def create_state_action_batch(
@@ -124,5 +132,10 @@ def extract_episode_data(episodes: list):
     o1 = torch.stack([ep["next_states"] for ep in episodes])
     r = torch.stack([ep["rewards"] for ep in episodes])
     t = torch.stack([ep["terminals"] for ep in episodes])
-    return o / (255 if len(o.shape) > 3 else 1), a, o1 / (255 if len(o1.shape) > 3 else 1), r, t
-
+    return (
+        o / (255 if len(o.shape) > 3 else 1),
+        a,
+        o1 / (255 if len(o1.shape) > 3 else 1),
+        r,
+        t,
+    )

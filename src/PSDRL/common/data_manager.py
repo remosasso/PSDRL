@@ -45,4 +45,3 @@ class DataManager:
         torch.save(agent.model.transition_cov, path + "transition_cov.pt")
         with open(path + "replay.pt", "wb") as fn:
             pickle.dump(agent.dataset.episodes, fn)
-

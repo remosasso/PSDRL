@@ -2,7 +2,11 @@ import numpy as np
 import torch
 
 from ..common.replay import Dataset
-from ..common.utils import create_state_action_batch, state_action_append, extract_episode_data
+from ..common.utils import (
+    create_state_action_batch,
+    state_action_append,
+    extract_episode_data,
+)
 from ..common.settings import BATCH_EMBEDDING_SIZE, BLR_COEFFICIENT, ONE_OVER_LAMBDA
 
 
@@ -83,23 +87,26 @@ class NeuralLinearModel:
             s = torch.zeros(ep_len, self.embed_dim, device=self.device)
             s1 = torch.zeros(ep_len, self.embed_dim, device=self.device)
             o, a, o1, r, done = extract_episode_data([ep])
-            o, a, o1, r, done = o.squeeze(), a.reshape(-1, 1), o1.squeeze(), r.reshape(-1, 1), done.reshape(-1, 1)
-            for i in range(embed_iterations):
-                s[i * embed_idx:i * embed_idx + BATCH_EMBEDDING_SIZE] = self.autoencoder.embed(
-                            o[
-                                i * embed_idx:i * embed_idx + BATCH_EMBEDDING_SIZE
-                            ]
-                    )
-                s1[i * embed_idx:i * embed_idx + BATCH_EMBEDDING_SIZE] = self.autoencoder.embed(
-                            o1[
-                                i * embed_idx:i * embed_idx + BATCH_EMBEDDING_SIZE
-                            ]
-
-                    )
-
-            s_a[idx, :ep_len] = state_action_append(
-                s, a, self.num_actions, self.device
+            o, a, o1, r, done = (
+                o.squeeze(),
+                a.reshape(-1, 1),
+                o1.squeeze(),
+                r.reshape(-1, 1),
+                done.reshape(-1, 1),
             )
+            for i in range(embed_iterations):
+                s[i * embed_idx : i * embed_idx + BATCH_EMBEDDING_SIZE] = (
+                    self.autoencoder.embed(
+                        o[i * embed_idx : i * embed_idx + BATCH_EMBEDDING_SIZE]
+                    )
+                )
+                s1[i * embed_idx : i * embed_idx + BATCH_EMBEDDING_SIZE] = (
+                    self.autoencoder.embed(
+                        o1[i * embed_idx : i * embed_idx + BATCH_EMBEDDING_SIZE]
+                    )
+                )
+
+            s_a[idx, :ep_len] = state_action_append(s, a, self.num_actions, self.device)
             y[idx, :ep_len] = torch.cat((s1, r), dim=1)
             t[idx, :ep_len] = done
 
@@ -168,7 +175,7 @@ class NeuralLinearModel:
             self.reward_cov = Phi * self.reward_prior
             self.transition_cov = Phi * self.transition_prior
             break
-            
+
         for i in range(self.embed_dim + 1):
             self.mu[i] = (self.noise_variance * Phi).matmul(x.T.matmul(y[:, i]))
 

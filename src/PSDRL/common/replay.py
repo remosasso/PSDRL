@@ -127,21 +127,20 @@ class Dataset:
             batches.append(
                 {
                     "states": self.episodes[ep]["states"][
-                        timestep: timestep + sequence_length
+                        timestep : timestep + sequence_length
                     ],
                     "actions": self.episodes[ep]["actions"][
-                        timestep: timestep + sequence_length
+                        timestep : timestep + sequence_length
                     ],
                     "next_states": self.episodes[ep]["next_states"][
-                        timestep: timestep + sequence_length
+                        timestep : timestep + sequence_length
                     ],
                     "rewards": self.episodes[ep]["rewards"][
-                        timestep: timestep + sequence_length
+                        timestep : timestep + sequence_length
                     ],
                     "terminals": self.episodes[ep]["terminals"][
-                        timestep: timestep + sequence_length
+                        timestep : timestep + sequence_length
                     ],
                 }
             )
         return extract_episode_data(batches)
-
